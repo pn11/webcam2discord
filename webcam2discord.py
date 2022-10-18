@@ -5,6 +5,7 @@ import time
 
 import cv2
 from dotenv import load_dotenv
+import numpy as np
 import requests
 
 
@@ -33,7 +34,8 @@ def upload2discord(image_path):
 
 def parse_args(args=None):
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('--interval', default=60, help='Capturing interval (min.)')
+    parser.add_argument('--interval', default=60, type=float, help='Capturing interval (min.)')
+    parser.add_argument('--use_poisson', action='store_true')
 
     if args is None:
         return parser.parse_args()
@@ -55,7 +57,10 @@ def main(args=None):
         cv2.imwrite(fname, frame)
         upload2discord(fname)
 
-        time.sleep(args.interval*60)
+        interval = args.interval
+        if args.use_poisson:
+            interval = np.random.poisson(args.interval)
+        time.sleep(interval*60)
 
 
 if __name__ == '__main__':

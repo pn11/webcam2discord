@@ -17,4 +17,5 @@ pip install python-dotenv requests
 
 1. `.env` に Discord の Webhook の URL を書く。
 1. `python webcam2discord.py --interval 30` (インターバルは分単位で、webcam をキャプチャーして Discord に送る)  
-   webcam が複数台ある場合は `vc = cv2.VideoCapture(1)` の部分を適宜
+   webcam が複数台ある場合は `vc = cv2.VideoCapture(1)` の部分を適宜変える
+1. `python webcam2discord.py --interval 30 --use_poisson` すると平均30分のポワソン分布になる
