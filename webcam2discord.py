@@ -52,7 +52,7 @@ def main(args=None):
     while True:
         frame = capture()
         now = datetime.datetime.now()
-        datestr = now.strftime('%Y%m%d-%H:%M:%S')
+        datestr = now.strftime('%Y%m%d-%H%M%S')
         fname = f"{dir}/{datestr}.jpg"
         cv2.imwrite(fname, frame)
         upload2discord(fname)
